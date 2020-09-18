@@ -5,6 +5,7 @@ package base;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -25,12 +26,9 @@ public class BaseTest {
     public void beforeSuite() {
         System.setProperty("headless", "false"); // You can set this property elsewhere
         String headless = System.getProperty("headless");
-        
-        File appDir = new File("src/test/resources/");
-		File app = new File(appDir, "chromedriver.exe");
-        System.setProperty("webdriver.chrome.driver", app.getAbsolutePath());
 
-        ChromeDriverManager.chromedriver();
+        WebDriverManager.chromedriver().setup();
+
         if("true".equals(headless)) {
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("--headless");
