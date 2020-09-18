@@ -10,10 +10,9 @@ class GoogleResultPage(object):
         return self._navegador.title
 
 
-
 class GoogleHomePage(object):
 
-    def __init__(self,  navegador):
+    def __init__(self, navegador):
         self._navegador = navegador
         self._navegador.get('http://www.google.com.br')
 
@@ -22,5 +21,3 @@ class GoogleHomePage(object):
         search_field_element.send_keys(search_term)
         search_field_element.submit()
         return GoogleResultPage(self._navegador)
-
-

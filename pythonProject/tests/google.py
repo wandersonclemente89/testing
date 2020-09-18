@@ -5,14 +5,14 @@ from pages.googlePage import GoogleHomePage
 
 class GoogleTest(unittest.TestCase):
     def test_google_search(self):
-        navegador = Base.start_browser()
+        navegador = Base.start_browser(self)
 
         self.assertEqual(
             GoogleHomePage(navegador)
             .search_for("Wanderson")
             .get_page_title(), "Wanderson - Pesquisa Google")
 
-        Base.quit_browser(navegador)
+        Base.quit_browser(self, navegador)
 
 
 if __name__ == '__main__':
