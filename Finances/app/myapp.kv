@@ -1,0 +1,105 @@
+#:import r ri
+
+<Manager>:
+    HomePage:
+        name: 'HomePage'
+    ContentPage:
+        name: 'CP'
+
+<HomePage>:
+    name: 'HomePage'
+    ScrollView:
+        BoxLayout:
+            id: homePageBox
+            orientation: 'vertical'
+            size_hint_y: None
+            height: self.minimum_height
+            padding: 15
+            spacing: 5
+            Image:
+                source: 'images/logo.png'
+                size_hint_y: None
+                height: 150
+            Button:
+                text: 'Stock Return'
+                size_hint_y: None
+                height: 60
+                on_release: app.root.current = 'CP' 
+            Button:
+                text: 'Stock Volatility'
+                size_hint_y: None
+                height: 60
+            Button:
+                text: 'Portifolio Return'
+                size_hint_y: None
+                height: 60
+            Button:
+                text: 'Portifolio Volatility'
+                size_hint_y: None
+                height: 60
+            Button:
+                text: 'Correlation'
+                size_hint_y: None
+                height: 60
+            Button:
+                text: 'Comparison'
+                size_hint_y: None
+                height: 60
+            Button:
+                text: 'Exit'
+                size_hint_y: None
+                height: 60
+                on_release: app.stop()
+            Label:
+                text: 'Designed by: Wanderson Clemente'
+                size_hint_y: None
+                height: 20
+                font_size: 10
+
+<ContentPage>:
+    name: 'CP'
+    ScrollView: 
+        BoxLayout:
+            id: box
+            size_hint_y: None
+            height: self.minimum_height
+            orientation: 'vertical'
+            ActionBar:
+                ActionView:
+                    ActionPrevious:
+                        title: 'Investiment Return'
+                        on_release: app.root.current = 'HomePage'
+                    ActionButton:
+                        text: 'Exit'
+                        on_release: app.stop()
+                        
+            GridLayout:
+                id: inputGridLayout
+                cols: 2
+                size_hint_y: None
+                Label:
+                    text: 'Stock'
+                TextInput:
+                    id: stock_name
+                    multiplelines: 'false'
+                Label:
+                    text: 'Start date'
+                TextInput:
+                    id: start_date
+                    multiplelines: 'false'
+            Button:
+                text: 'Calculate'
+                size_hint_y: None
+                height: 60
+                on_release: 
+                    result_label.text = 'Return of Investiment:' 
+                    result.text = str(r.stockReturn(stock_name.text,start_date.text,'L'))+'%'
+            GridLayout:
+                cols: 2
+                size_hint_y: None
+                Label:
+                    id: result_label
+                    text: ''
+                Label:
+                    id: result
+                    text: ''            
