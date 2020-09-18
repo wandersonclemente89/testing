@@ -7,7 +7,7 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Base{
+public class Base {
     private static final int TIMEOUT = 5;
     private static final int POLLING = 100;
 
