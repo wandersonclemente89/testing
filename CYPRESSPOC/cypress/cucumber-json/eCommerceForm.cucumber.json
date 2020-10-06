@@ -1,0 +1,52 @@
+[
+  {
+    "keyword": "Feature",
+    "name": "Adding Personal Information",
+    "line": 1,
+    "id": "adding-personal-information",
+    "tags": [],
+    "uri": "eCommerceForm.feature",
+    "elements": [
+      {
+        "id": "adding-personal-information;adding-name-and-gender",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "Adding name and gender",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 4,
+            "name": "I access the angularPratice home page",
+            "result": {
+              "status": "passed",
+              "duration": 6660000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 5,
+            "name": "set name as Bob",
+            "result": {
+              "status": "passed",
+              "duration": 336000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "set gender as Female",
+            "result": {
+              "status": "passed",
+              "duration": 254000000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
