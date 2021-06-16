@@ -14,9 +14,7 @@ cypress/videos/*
 target/*
 cypress/downloads/*
 
-.idea/
-**/*.iml
-
+ .idea
 ### Node ###
 # Logs
 logs

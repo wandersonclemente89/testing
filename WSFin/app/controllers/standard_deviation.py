@@ -12,6 +12,7 @@ def standard_deviation():
         stockRisk=StandardDeviation.standard_deviation(stock_list, start_date)
     )
 
+
 @app.route('/portfolio/risk', methods=["POST"])
 def portfolio_risk():
     req_data = request.get_json()
@@ -20,3 +21,4 @@ def portfolio_risk():
     return jsonify(
         portfolioRisk=StandardDeviation.portfolio_risk(stock_list, start_date)
     )
+

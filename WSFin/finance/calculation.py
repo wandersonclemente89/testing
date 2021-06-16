@@ -1,4 +1,5 @@
 import numpy as np
+from datetime import date, datetime
 from pandas_datareader import data as wb
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -33,6 +34,13 @@ class ReturnOfInvestment:
             return
 
         return str(round(avg_annual, 5) * 100) + '%'
+
+    @staticmethod
+    def equity_return(stock, erp, ipca):
+        beta = Beta.stock_beta(stock)
+        ri = ipca + (float(beta))*(erp-ipca)
+        return str(round((ri * 100), 2)) + '%'
+        
 
     @staticmethod
     def stock_portfolio_return(dict_of_stocks, start_date):
@@ -105,3 +113,29 @@ class StandardDeviation:
         pfolio_vol = pow(pfolio_var, 0.5)
 
         return str(round(pfolio_var, 5)), str(round(pfolio_vol, 5) * 100) + '%'
+
+
+class Beta:
+
+    @staticmethod
+    def stock_beta(stock):
+        data = pd.DataFrame()
+        list_of_stocks = [stock, '^BVSP']
+
+        current_date = date.today().strftime('%Y-%m-%d')
+        current_year = current_date.split('-')[0]
+
+        start_date = datetime(int(current_year)-5, 1, 1).strftime('%Y-%m-%d')
+        end_date = datetime(int(current_year), 12, 31).strftime('%Y-%m-%d')
+
+        for stock in list_of_stocks:
+            data[stock] = wb.get_data_yahoo(stock, interval='mo', start=start_date, end=end_date)['Adj Close']
+
+        print(data)
+
+        sec_return = np.log(data / data.shift(1))
+        cov = sec_return.cov() * 12
+        cov_with_market = cov.iloc[0, 1]
+        market_var = sec_return['^BVSP'].var() * 12
+
+        return str(round((cov_with_market/market_var), 2))

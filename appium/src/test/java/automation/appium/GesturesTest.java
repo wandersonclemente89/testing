@@ -16,21 +16,24 @@ import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.TapOptions;
 import io.appium.java_client.touch.offset.ElementOption;
+import pages.Auth;
 
 public class GesturesTest extends Base {
 
 	AndroidDriver<AndroidElement> driver;
 	AndroidTouchAction touchAction;
+	Auth auth;
 	
 	@BeforeEach
 	public void setUp() throws MalformedURLException, InterruptedException {
 		driver = capabilities();
 		touchAction = new AndroidTouchAction(driver);
+		auth = new Auth();
 	}
 	
 	@Test
 	public void longPressTest() {
-		driver.findElementByXPath("//android.widget.TextView[@text='Views']").click();
+		auth.doLogin("wanderson","123deoliveira4");
 		//Tap		
 		AndroidElement expListsElement = driver.findElementByXPath("//android.widget.TextView[@text='Expandable Lists']");
 		touchAction.tap(new TapOptions().withElement(ElementOption.element(expListsElement))).perform();

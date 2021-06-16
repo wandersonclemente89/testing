@@ -22,3 +22,13 @@ def stock_portfolio_return():
     return jsonify(
         historicalReturn=ReturnOfInvestment.stock_portfolio_return(stock_list, start_date)
     )
+
+@app.route('/stock/capm', methods=["POST"])
+def equity_return():
+    req_data = request.get_json()
+    stock = req_data['stock']
+    erp = req_data['equityRiskPremium']
+    ipca = req_data['riskFreeTax']
+    return jsonify(
+        expectedEquityReturn=ReturnOfInvestment.equity_return(stock, erp, ipca)
+    )
